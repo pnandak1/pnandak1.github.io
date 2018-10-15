@@ -1,0 +1,14 @@
+{
+  "config": [{
+	  "topic": "Manouche Jazz",
+	  "numVideos": 2,
+	  "autoplay": 1,
+	  "muted": 0
+      },
+	  {
+      "topic": "Klezmer",
+	  "numVideos": 3,
+	  "autoplay": 2,
+	  "muted": 1
+      }]
+}
