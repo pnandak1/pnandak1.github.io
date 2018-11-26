@@ -57,9 +57,9 @@ if __name__ == "__main__":
 
     # The list of sites that we wish to crawl
     sites_with_group = [
-        # ('https://www.youtube.com', 'both', 'start'),
+        ('https://www.youtube.com', 'both', 'start'),
         ('https://pnandak1.github.io/a/', 'control', 'treatment'),
-        # ('http://www.youtube.com/', 'both', 'measurement')
+        ('http://www.youtube.com/', 'both', 'measurement')
     ]
 
     for site, group, stage in sites_with_group:
