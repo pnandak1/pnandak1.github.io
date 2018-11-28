@@ -1,5 +1,12 @@
-def visit_and_scroll(command_sequence):
+import time
+
+
+NUM_VIDEOS = 2
+
+def visit(command_sequence):
     command_sequence.get(sleep=0, timeout=60)
+
+def scroll(command_sequence):
     command_sequence.page_down(count=5)
 
 def save_page_source(command_sequence):

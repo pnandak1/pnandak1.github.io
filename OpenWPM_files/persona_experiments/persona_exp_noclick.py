@@ -1,29 +1,31 @@
 from __future__ import absolute_import
 from persona_common import *
+from sys import argv
 
 
 NUM_BROWSERS = 20
 NUM_BLOCKS = 10
-
+  
 
 def run_experiment(data_directory, num_browsers=20, num_blocks=10):
     persona = Experiment(
         data_directory=data_directory,
         num_browsers=num_browsers,
         num_blocks=num_blocks,
-        feature_extract=extract_topics
+        feature_extract=extract_topics,
+        save_path=str(argv[1]) + "_data.txt"
     )
     persona.add_stage(
         "start", "all", "https://www.youtube.com", 
-        [visit_and_scroll]
+        [visit, scroll]
     )
     persona.add_stage(
-        "treatment", "control", "https://pnandak1.github.io/a/", 
-        [visit_and_scroll]
+        "treatment", "experimental", "https://pnandak1.github.io/a/", 
+        [visit]
     )
     persona.add_stage(
         "measurement", "all", "https://www.youtube.com", 
-        [visit_and_scroll, save_page_source]
+        [visit, scroll, save_page_source]
     )
     persona.run()
     persona.save_data()
@@ -33,9 +35,11 @@ def run_analysis(observations, assignments):
     analysis = Analysis(
         observed_values=observations,
         unit_assignments=assignments,
-        test_statistic=test_statistic
+        test_statistic=test_statistic,
+        save_path=str(argv[1]) + "_results.txt"
     )
     analysis.perform()
+    analysis.save_results()
     return analysis.get_results()
 
 def main():
@@ -55,4 +59,6 @@ if __name__ == "__main__":
     else:
         from ..experiment.Experiment import Experiment, Stage
         from ..analysis.Analysis import Analysis
+    if len(argv) != 2:
+        raise Exception("Requires argument: save file name")
     main()
