@@ -1,0 +1,58 @@
+from __future__ import absolute_import
+from persona_common import *
+
+
+NUM_BROWSERS = 20
+NUM_BLOCKS = 10
+
+
+def run_experiment(data_directory, num_browsers=20, num_blocks=10):
+    persona = Experiment(
+        data_directory=data_directory,
+        num_browsers=num_browsers,
+        num_blocks=num_blocks,
+        feature_extract=extract_topics
+    )
+    persona.add_stage(
+        "start", "all", "https://www.youtube.com", 
+        [visit_and_scroll]
+    )
+    persona.add_stage(
+        "treatment", "control", "https://pnandak1.github.io/a/", 
+        [visit_and_scroll, click_on_video]
+    )
+    persona.add_stage(
+        "measurement", "all", "https://www.youtube.com", 
+        [visit_and_scroll, save_page_source]
+    )
+    persona.run()
+    persona.save_data()
+    return persona.get_observations(), persona.get_assignments()
+
+def run_analysis(observations, assignments):
+    analysis = Analysis(
+        observed_values=observations,
+        unit_assignments=assignments,
+        test_statistic=test_statistic
+    )
+    analysis.perform()
+    return analysis.get_results()
+
+def main():
+    data_directory = "/home/vagrant/Desktop/"
+    observations, assignments = run_experiment(data_directory, NUM_BROWSERS, NUM_BLOCKS)
+    results = run_analysis(observations, assignments)
+    print "p-value: %f" % results
+
+
+if __name__ == "__main__":
+    if __package__ is None:
+        import sys
+        from os import path
+        sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+        from experiment.Experiment import Experiment, Stage
+        from analysis.Analysis import Analysis
+    else:
+        from ..experiment.Experiment import Experiment, Stage
+        from ..analysis.Analysis import Analysis
+    main()
