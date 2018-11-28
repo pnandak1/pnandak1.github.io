@@ -16,8 +16,8 @@ def run_experiment(data_directory, num_browsers=20, num_blocks=10):
         save_path=str(argv[1]) + "_data.txt"
     )
     persona.add_stage(
-        "start", "all", "https://www.youtube.com/", 
-        [visit, scroll, save_page_source]
+        "start", "all", "https://www.youtube.com/",
+        [visit, scroll]
     )
     persona.add_stage(
         "measurement", "all", "https://www.youtube.com/", 
