@@ -20,6 +20,9 @@ def click_on_video(command_sequence, iframe_id=0):
     command_sequence.click(xpath='/html/body/div/div/div[4]/button')
     command_sequence.reset_focus()
 
+def click_jack(command_sequence, iframe_id=0):
+    command_sequence.click(xpath='//*[@id="player_uid_644712413_1"]/div[4]/div[1]')
+
 def click_on_videos(command_sequence):
     for i in range(NUM_VIDEOS):
         click_on_video(command_sequence, i)

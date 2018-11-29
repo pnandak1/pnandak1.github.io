@@ -20,7 +20,7 @@ def run_experiment(data_directory, num_browsers=20, num_blocks=10):
         [visit, scroll]
     )
     persona.add_stage(
-        "treatment", "experimental", "https://pnandak1.github.io/experimental/playback.html", 
+        "treatment", "experimental", "https://pnandak1.github.io/treatments/playback_button.html", 
         [visit, click_on_play]
     )
     persona.add_stage(

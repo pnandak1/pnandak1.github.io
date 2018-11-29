@@ -20,8 +20,8 @@ def run_experiment(data_directory, num_browsers=20, num_blocks=10):
         [visit, scroll]
     )
     persona.add_stage(
-        "treatment", "experimental", "https://pnandak1.github.io/treatments/playback_video.html", 
-        [visit, click_on_video]
+        "treatment", "experimental", "https://pnandak1.github.io/treatments/playback_autoplay.html", 
+        [visit]
     )
     persona.add_stage(
         "measurement", "all", "https://www.youtube.com", 
