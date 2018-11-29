@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+#bg {
+    background-image: url(http://site.uit.no/ml/files/2017/09/cmu-student-pride-1024x768.jpg);
+    width: 1024px;
+    height: 768px;
+}
+
+#vid {
+    border: 0;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 1024px;
+    height: 768px;
+    opacity: 0.01;
+}
+</style
+<meta charset="utf-8">
+</head>
+<body>
+<div id="bg">
+<iframe id="vid" src="https://www.youtube.com/embed/uIQt_lymceY?enablejsapi=1"></iframe>
+</div><br>
+
+<script type="text/javascript">
+  var tag = document.createElement('script');
+  tag.id = 'iframe-demo';
+  tag.src = 'https://www.youtube.com/iframe_api';
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('vid', {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+    });
+  }
+  function onPlayerReady(event) {
+	  player.setVolume(0)
+  }
+  function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.PLAYING) {
+          player.setPlaybackRate(2) 
+      }
+  }
+</script>
+
+</body>
+</html>
