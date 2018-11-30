@@ -5,6 +5,7 @@ from sys import argv
 
 NUM_BROWSERS = 20
 NUM_BLOCKS = 10
+TEST_NAME = "autoplay"
   
 
 def run_experiment(data_directory, num_browsers=20, num_blocks=10):
@@ -13,7 +14,7 @@ def run_experiment(data_directory, num_browsers=20, num_blocks=10):
         num_browsers=num_browsers,
         num_blocks=num_blocks,
         feature_extract=extract_topics,
-        save_path=str(argv[1]) + "_data.txt"
+        save_path=TEST_NAME + "_data.txt"
     )
     persona.add_stage(
         "start", "all", "https://www.youtube.com", 
@@ -36,7 +37,7 @@ def run_analysis(observations, assignments):
         observed_values=observations,
         unit_assignments=assignments,
         test_statistic=test_statistic,
-        save_path=str(argv[1]) + "_results.txt"
+        save_path=TEST_NAME + "_results.txt"
     )
     analysis.perform()
     analysis.save_results()
@@ -59,6 +60,4 @@ if __name__ == "__main__":
     else:
         from ..experiment.Experiment import Experiment, Stage
         from ..analysis.Analysis import Analysis
-    if len(argv) != 2:
-        raise Exception("Requires argument: save file name")
     main()

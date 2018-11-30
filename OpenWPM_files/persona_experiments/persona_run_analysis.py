@@ -1,10 +1,11 @@
 from __future__ import absolute_import
 from persona_common import *
+from sys import argv
 
 
 def run_analysis():
     analysis = Analysis(
-        data_path="tmp_data_file.txt",
+        data_path=str(argv[1]).strip() + "_data.txt",
         test_statistic=test_statistic
     )
     analysis.load_data()
