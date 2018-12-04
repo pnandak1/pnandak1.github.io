@@ -6,7 +6,8 @@ from sys import argv
 def run_analysis():
     analysis = Analysis(
         data_path=str(argv[1]).strip() + "_data.txt",
-        test_statistic=test_statistic
+        test_statistic=test_statistic,
+        truncate = 5
     )
     analysis.load_data()
     analysis.perform()
